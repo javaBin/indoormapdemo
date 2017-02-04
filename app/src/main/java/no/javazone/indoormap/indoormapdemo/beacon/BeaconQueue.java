@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import no.javazone.archframework.model.dto.JzBeaconRegion;
+import no.javazone.indoormap.indoormapdemo.model.JzBeaconRegion;
 
 public class BeaconQueue {
     private ArrayList<BeaconInformationItem> mBeaconList ;
