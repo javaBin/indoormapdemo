@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "917842642407",
+    "firebase_url": "https://indoormap-4c63b.firebaseio.com",
+    "project_id": "indoormap-4c63b",
+    "storage_bucket": "indoormap-4c63b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917842642407:android:443e5b431cc774ba",
+        "android_client_info": {
+          "package_name": "no.javazone.indoormap.indoormapandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917842642407-q09jjkk0ii590r73utuooj4ir0b55c5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGwWRrvsLz8J6M47EK_jOGvj6UNzQQkmk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917842642407:android:2ef6fdbe451cb2eb",
+        "android_client_info": {
+          "package_name": "no.javazone.indoormap.indoormapdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917842642407-q09jjkk0ii590r73utuooj4ir0b55c5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGwWRrvsLz8J6M47EK_jOGvj6UNzQQkmk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

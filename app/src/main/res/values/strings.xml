@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">IndoorMapDemo</string>
+    <string name="title_activity_beacon_maps">Map</string>
+</resources>
