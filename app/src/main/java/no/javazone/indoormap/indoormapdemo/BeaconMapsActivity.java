@@ -57,7 +57,11 @@ import no.javazone.indoormap.indoormapdemo.util.MapUtils;
 import no.javazone.indoormap.indoormapdemo.util.NetworkUtils;
 import no.javazone.indoormap.indoormapdemo.util.PermissionsUtils;
 
-public class BeaconMapsActivity extends FragmentActivity implements
+import static no.javazone.indoormap.indoormapdemo.R.attr.icon;
+import static no.javazone.indoormap.indoormapdemo.SlideableInfoFragment.*;
+
+public class BeaconMapsActivity extends FragmentActivity
+        implements Callback,
         GoogleMap.OnMarkerClickListener,
         GoogleMap.OnIndoorStateChangeListener, GoogleMap.OnMapClickListener, OnMapReadyCallback {
 
@@ -104,6 +108,7 @@ public class BeaconMapsActivity extends FragmentActivity implements
     private boolean mAtOsloSpektrum = false;
     private Marker mOsloSpektrumMarker = null;
     private SupportMapFragment mMapFragment;
+    private MapInfoFragment mInfoFragment;
     private GoogleMap mMap;
     private Rect mMapInsets = new Rect();
 
@@ -125,6 +130,21 @@ public class BeaconMapsActivity extends FragmentActivity implements
     public Button mFloor3Button;
     public Button mFloorAllButton;
 
+    @Override
+    public void onInfoSizeChanged(int left, int top, int right, int bottom) {
+        if (mInfoFragment instanceof SlideableInfoFragment) {
+            // SlideableInfoFragment is only shown on phone layouts at the bottom of the screen,
+            // but only up to 50% of the total height of the screen
+            if ((float) top / (float) bottom > MAX_PANEL_PADDING_FACTOR) {
+
+                setMapInsets(0, 0, 0, bottom - top);
+            }
+            final int bottomPadding = Math.min(bottom - top,
+                    Math.round(bottom * MAX_PANEL_PADDING_FACTOR));
+            setMapInsets(0, 0, 0, bottomPadding);
+        }
+    }
+
 
     public interface Callbacks {
 
@@ -139,26 +159,41 @@ public class BeaconMapsActivity extends FragmentActivity implements
         void onInfoShowFirstSessionTitle(String roomId, String roomTitle, int roomType);
     }
 
-    private static Callbacks sDummyCallbacks = new Callbacks() {
+    private Callbacks sDummyCallbacks = new Callbacks() {
 
         @Override
         public void onInfoHide() {
+            if (mMap != null) {
+                mInfoFragment.hide();
+            }
         }
 
         @Override
         public void onInfoShowOsloSpektrum() {
+            if (mInfoFragment != null) {
+                mInfoFragment.showOsloSpektrum();
+            }
         }
 
         @Override
         public void onInfoShowTitle(String label, int roomType) {
+            if (mInfoFragment != null) {
+                mInfoFragment.showTitleOnly(icon, label);
+            }
         }
 
         @Override
         public void onInfoShowSessionlist(String roomId, String roomTitle, int roomType) {
+            if (mInfoFragment != null) {
+                mInfoFragment.showFirstSessionTitle(roomId, roomTitle, roomType);
+            }
         }
 
         @Override
         public void onInfoShowFirstSessionTitle(String roomId, String roomTitle, int roomType) {
+            if (mInfoFragment != null) {
+                mInfoFragment.showFirstSessionTitle(roomId, roomTitle, roomType);
+            }
         }
 
     };
@@ -172,6 +207,13 @@ public class BeaconMapsActivity extends FragmentActivity implements
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
+        if (mInfoFragment == null) {
+            mInfoFragment = MapInfoFragment.newInstance(this);
+            getFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container_map_info, mInfoFragment, "mapsheet")
+                    .commit();
+        }
 
         ICON_ACTIVE = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
         mEstimoteBeaconManager = new EstimoteBeaconManager(
@@ -366,6 +408,7 @@ public class BeaconMapsActivity extends FragmentActivity implements
     public void onStop() {
         super.onStop();
         mEstimoteBeaconManager.stopEstimoteBeaconManager();
+        clearMap();
 
     }
 
@@ -760,7 +803,14 @@ public class BeaconMapsActivity extends FragmentActivity implements
             mCallbacks.onInfoShowTitle(model.label, model.type);
             selectActiveMarker(marker);
 
-        } else {
+        } else if (model != null && MapUtils.hasInfoSessionList(model.type)) {
+            // Type has sessions to display
+            mCallbacks.onInfoShowSessionlist(model.id, model.label, model.type);
+            selectActiveMarker(marker);
+
+        }
+
+        else {
             // Hide the bottom sheet for unknown markers
             mCallbacks.onInfoHide();
         }

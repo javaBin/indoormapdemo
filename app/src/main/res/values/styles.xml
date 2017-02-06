@@ -53,6 +53,41 @@
         <item name="android:textColor">@color/text_main</item>
     </style>
 
+    <style name="TextAppearance.Body1" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">14sp</item> <!-- bug in AppCompat, can remove this when it's fixed -->
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Body1Text">
+        <item name="android:textAppearance">@style/TextAppearance.Body1</item>
+        <item name="android:lineSpacingMultiplier">@dimen/body_1_spacing</item>
+    </style>
+
+    <style name="MapRoomTitle">
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+        <item name="android:textColor">@color/map_text_primary</item>
+        <item name="android:ellipsize">end</item>
+        <!--<item name="android:textStyle">bold</item>-->
+        <item name="android:fontFamily">@string/font_fontFamily_medium</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="TextAppearance.Body2" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">14sp</item> <!-- bug in AppCompat, can remove this when it's fixed -->
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="TextAppearance.SessionTitle" parent="TextAppearance.Body2">
+        <item name="android:textColor">@color/video_title</item>
+    </style>
+
+    <style name="Body1TextPrimaryTextColor">
+        <item name="android:textAppearance">@style/TextAppearance.Body1</item>
+        <item name="android:textColor">@color/theme_primary</item>
+        <item name="android:lineSpacingMultiplier">@dimen/body_1_spacing</item>
+    </style>
+
     <style name="GeneralButtonStyle" parent="FontMedium">
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:background">@color/jz_yellow</item>

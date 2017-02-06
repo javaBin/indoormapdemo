@@ -13,6 +13,63 @@
     <dimen name="app_text_size_xlarge">20sp</dimen>
     <dimen name="app_text_size_diff_large_small">6sp</dimen>
 
+    <dimen name="keyline_1">16dp</dimen>
+    <dimen name="keyline_1_minus_8dp">8dp</dimen>
+    <dimen name="keyline_2">72dp</dimen>
+    <dimen name="keyline_2_minus_16dp">56dp</dimen>
+    <dimen name="keyline_2_session_detail">@dimen/keyline_2</dimen>
+
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="divider_height_inc_padding">16dp</dimen>
+    <dimen name="divider_height_inc_padding_top_only">8dp</dimen>
+    <dimen name="divider_padding_top">7dp</dimen>
+    <dimen name="divider_padding_bottom">8dp</dimen>
+
+    <!-- UI elements -->
+    <dimen name="a11y_min_touch_target_dimen">48dp</dimen>
+    <dimen name="whats_on_height">64dp</dimen>
+    <dimen name="track_icon_source_size">48dp</dimen>
+    <dimen name="track_icon_size">32dp</dimen>
+    <dimen name="track_icon_padding">2dp</dimen>
+    <dimen name="page_margin_width">16dp</dimen>
+    <dimen name="list_extra_button_width">48dp</dimen>
+    <dimen name="action_button_min_width">56dp</dimen>
+    <dimen name="multipane_half_padding">8dp</dimen>
+    <dimen name="multipane_padding">16dp</dimen>
+    <dimen name="list_scroll_top_offset">16dp</dimen>
+    <dimen name="schedule_block_time_width">72dp</dimen>
+    <dimen name="add_to_schedule_button_height">56dp</dimen> <!-- including padding -->
+    <dimen name="add_to_schedule_button_height_no_padding">40dp</dimen>
+    <dimen name="fab_touch_raise">6dp</dimen>
+    <dimen name="indeterminate_progress_size">16dp</dimen>
+    <dimen name="data_item_padding">16dp</dimen>
+    <dimen name="session_details_floating_width">500dp</dimen>
+    <dimen name="session_details_floating_height">650dp</dimen>
+    <dimen name="session_details_extra_space_bottom">48dp</dimen>
+    <dimen name="my_schedule_item_height">136dp</dimen>
+    <dimen name="my_schedule_item_height_break">80dp</dimen>
+    <dimen name="my_schedule_item_height_past">60dp</dimen>
+    <dimen name="my_schedule_time_column_width">100dp</dimen>
+    <dimen name="my_schedule_title_strip_padding">8dp</dimen>
+    <dimen name="my_schedule_page_margin">@dimen/padding_normal</dimen>
+    <dimen name="my_schedule_icon_size">24dp</dimen>
+    <dimen name="my_schedule_icon_horizontal_padding">24dp</dimen> <!-- center 24dp in @keyline_2 -->
+    <dimen name="widget_schedule_time_width">72dp</dimen>
+    <dimen name="widget_schedule_header_height">40dp</dimen>
+
+    <dimen name="card_elevation">2dp</dimen>
+
+
+    <!-- Map -->
+    <dimen name="map_slideableinfo_height_titleonly">56dp</dimen>
+    <dimen name="map_slideableinfo_height_moscone">120dp</dimen>
+    <dimen name="map_slideableinfo_height_session">100dp</dimen>
+    <dimen name="map_info_item_height">72dp</dimen>
+    <dimen name="map_info_item_vertical_padding">20dp</dimen>
+
+    <dimen name="stream_card_corner_radius">0dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+
     <!-- Start Deprecated -->
     <dimen name="text_size_xsmall">11sp</dimen>
     <dimen name="text_size_small">12sp</dimen>
@@ -21,6 +78,9 @@
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_xlarge">19sp</dimen>
     <dimen name="text_size_diff_large_small">6sp</dimen>
+
+    <item name="body_1_spacing" format="float" type="dimen">1.22448979592</item>
+
 
     <!--
     Material Design Typography Scale

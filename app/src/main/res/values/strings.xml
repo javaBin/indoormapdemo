@@ -7,4 +7,10 @@
     <string name="map_floor3_text">2</string>
     <string name="map_permission_denied">App permission denied.</string>
 
+    <!-- Label of info screen title for Moscone Center at a lower zoom level -->
+    <string name="map_oslospektrum" translatable="false">Oslo Spektrum</string>
+
+    <!-- Address of Moscone Center. Shown together with its name. -->
+    <string name="map_spektrum_address" translatable="false">Sonja Henies plass 2,\n 0185 Oslo\n</string>
+
 </resources>

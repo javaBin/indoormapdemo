@@ -7,24 +7,24 @@ public class Coordinates {
 
     @SerializedName("latitude")
     @Expose
-    private float latitude;
+    private double latitude;
     @SerializedName("longitude")
     @Expose
-    private float longitude;
+    private double longitude;
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

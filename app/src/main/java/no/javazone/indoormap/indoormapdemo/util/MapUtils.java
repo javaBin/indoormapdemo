@@ -102,6 +102,26 @@ public class MapUtils {
                         false);
     }
 
+    /**
+     * True if the info details for this room type contain a title and a list of sessions.
+     */
+    public static boolean hasInfoSessionList(int markerType) {
+        return markerType != MarkerModel.TYPE_INACTIVE && markerType != MarkerModel.TYPE_LABEL
+                && markerType != MarkerModel.TYPE_CODELAB;
+    }
+
+    /**
+     * True if the info details for this room type contain a title and a list of sessions.
+     */
+    public static boolean hasInfoFirstDescriptionOnly(int markerType) {
+        return markerType == MarkerModel.TYPE_CODELAB;
+    }
+
+
+    public static boolean hasInfoSessionListIcons(int markerType) {
+        return markerType == MarkerModel.TYPE_SANDBOX;
+    }
+
 
     public static float createFloorColor(int floorLevel) {
         float marker = 0;
