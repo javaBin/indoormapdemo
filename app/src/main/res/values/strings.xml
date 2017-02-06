@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">IndoorMapDemo</string>
     <string name="title_activity_beacon_maps">Map</string>
+
+    <string name="map_floor1_text">0</string>
+    <string name="map_floor2_text">1</string>
+    <string name="map_floor3_text">2</string>
+    <string name="map_permission_denied">App permission denied.</string>
+
 </resources>

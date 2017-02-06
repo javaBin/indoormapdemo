@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- standard metrics -->
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="padding_normal">16dp</dimen>
+    <!-- App Primary Text Sizes -->
+    <dimen name="app_text_size_xsmall">11sp</dimen>
+    <dimen name="app_text_size_small">12sp</dimen>
+    <dimen name="app_text_size_medium">14sp</dimen>
+    <dimen name="app_text_size_large">18sp</dimen>
+    <dimen name="app_text_size_xlarge">20sp</dimen>
+    <dimen name="app_text_size_diff_large_small">6sp</dimen>
+
+    <!-- Start Deprecated -->
+    <dimen name="text_size_xsmall">11sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_body">13sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">19sp</dimen>
+    <dimen name="text_size_diff_large_small">6sp</dimen>
+
+    <!--
+    Material Design Typography Scale
+    Reference from http://www.google.com/design/spec/style/typography.html#typography-standard-styles
+    -->
+    <dimen name="Material.Text.Display4.Size">112sp</dimen>
+    <dimen name="Material.Text.Display3.Size">56dp</dimen>
+    <dimen name="Material.Text.Display2.Size">45sp</dimen>
+    <dimen name="Material.Text.Display1.Size">34sp</dimen>
+    <dimen name="Material.Text.Headline.Size">24sp</dimen>
+    <dimen name="Material.Text.Title.Size">20sp</dimen>
+    <dimen name="Material.Text.Subhead.Size">16sp</dimen>
+    <dimen name="Material.Text.Body2.Size">14sp</dimen>
+    <dimen name="Material.Text.Body1.Size">14sp</dimen>
+    <dimen name="Material.Text.Caption.Size">12sp</dimen>
+    <dimen name="Material.Text.Menu.Size">14sp</dimen>
+    <dimen name="Material.Text.Button.Size">14sp</dimen>
+    <dimen name="extra_button_padding">16dp</dimen>
+    <dimen name= "icon_size">24dp</dimen>
+    <dimen name="button_size">65dp</dimen>
+    <dimen name="session_info">210dp</dimen>
+
+</resources>

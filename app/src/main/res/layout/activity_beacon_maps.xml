@@ -1,8 +1,55 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="no.javazone.indoormap.indoormapdemo.BeaconMapsActivity" />
+    android:layout_height="match_parent">
+    <!-- Main layout -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="no.javazone.indoormap.indoormapdemo.BeaconMapsActivity" />
+
+
+    <FrameLayout
+        android:id="@+id/fragment_container_map_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/allfloors_button"
+            style="@style/GeneralButtonStyle"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="wrap_content"
+            android:text="All Floors" />
+
+        <Button
+            android:id="@+id/floor1_button"
+            style="@style/GeneralButtonStyle"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="wrap_content"
+            android:text="@string/map_floor1_text" />
+
+        <Button
+            android:id="@+id/floor2_button"
+            style="@style/GeneralButtonStyle"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="wrap_content"
+            android:text="@string/map_floor2_text" />
+
+        <Button
+            android:id="@+id/floor3_button"
+            style="@style/GeneralButtonStyle"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="wrap_content"
+            android:text="@string/map_floor3_text" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -8,4 +8,71 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Root styles that vary by API level -->
+
+    <!-- Disable RTL support on older devices -->
+    <!-- Prevents crash on certain devices to namespace conflict -->
+    <style name="FrameworkRoot.Theme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="FrameworkRoot.Widget" parent="Theme.AppCompat.NoActionBar" />
+
+    <!--++++++++++++++++++++++++++-->
+    <!--added on API 16 (JB - 4.1)-->
+    <!--++++++++++++++++++++++++++-->
+    <!--the default font-->
+    <string name="fontFamily__roboto_regular">sans-serif</string>
+    <string name="fontFamily__roboto_light">sans-serif-light</string>
+    <string name="fontFamily__roboto_condensed">sans-serif-condensed</string>
+
+    <!--+++++++++++++++++++++++++++++-->
+    <!--added on API 17 (JBMR1 - 4.2)-->
+    <!--+++++++++++++++++++++++++++++-->
+    <string name="fontFamily__roboto_thin">sans-serif-thin</string>
+
+    <!--+++++++++++++++++++++++++++-->
+    <!--added on Lollipop (LL- 5.0)-->
+    <!--+++++++++++++++++++++++++++-->
+    <string name="fontFamily__roboto_medium">sans-serif-medium</string>
+    <string name="fontFamily__roboto_black">sans-serif-black</string>
+    <string name="fontFamily__roboto_condensed_light">sans-serif-condensed-light</string>
+
+    <style name="FontMedium" parent="FontBase">
+        <item name="android:fontFamily">@string/fontFamily__roboto_medium</item>
+    </style>
+
+    <style name="FontLight" parent="FontBase">
+        <item name="android:fontFamily">@string/fontFamily__roboto_light</item>
+    </style>
+
+    <style name="FontCondensed" parent="FontBase">
+        <item name="android:fontFamily">@string/fontFamily__roboto_condensed</item>
+    </style>
+
+
+    <!-- TextViews -->
+    <style name="FontBase">
+        <item name="android:textColor">@color/text_main</item>
+    </style>
+
+    <style name="GeneralButtonStyle" parent="FontMedium">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:background">@color/jz_yellow</item>
+        <item name="android:textColor">@color/jz_darkred</item>
+    </style>
+
+    <style name="Dialog_Theme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/theme_primary</item>
+        <item name="colorPrimaryDark">@color/theme_primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="MapLabel" parent="android:TextAppearance.Medium">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:shadowColor">#FF000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">3</item>
+    </style>
+
+
 </resources>
