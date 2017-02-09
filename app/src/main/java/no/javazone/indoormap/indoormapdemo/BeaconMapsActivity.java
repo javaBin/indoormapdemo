@@ -219,12 +219,16 @@ public class BeaconMapsActivity extends FragmentActivity
         mEstimoteBeaconManager = new EstimoteBeaconManager(
                 this, this);
         mEstimoteBeaconManager.initializeEstimoteBeaconManager(this);
-        mMapFragment.getMapAsync(this);
 
         mFloorAllButton = (Button) findViewById(R.id.allfloors_button);
         mFloor1Button = (Button) findViewById(R.id.floor1_button);
         mFloor2Button = (Button) findViewById(R.id.floor2_button);
         mFloor3Button = (Button) findViewById(R.id.floor3_button);
+
+        mRegionList = new ArrayList<Region>();
+        mBeaconRegionList = new ArrayList<>();
+
+
 
         mFloorAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,8 +278,14 @@ public class BeaconMapsActivity extends FragmentActivity
             }
         });
 
-        mRegionList = new ArrayList<Region>();
-        mBeaconRegionList = new ArrayList<>();
+        if (mFloorIcons.isEmpty()) {
+            for (int i = 0; i < mNumberFloors; i++) {
+                mFloorIcons.add(BitmapDescriptorFactory
+                        .defaultMarker(MapUtils.createFloorColor(i)));
+            }
+        }
+
+        mMapFragment.getMapAsync(this);
     }
 
     private void ResetColorButton(Button button) {
@@ -287,12 +297,6 @@ public class BeaconMapsActivity extends FragmentActivity
     public void onStart() {
         super.onStart();
         mEstimoteBeaconManager.startEstimoteBeaconManager();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
         if (!NetworkUtils.isGpsOn(BeaconMapsActivity.this)) {
             createGpsDialog().show();
         }
@@ -301,13 +305,11 @@ public class BeaconMapsActivity extends FragmentActivity
         } else {
             mEstimoteBeaconManager.startMonitorEstimoteBeacons(BeaconMapsActivity.this);
         }
+    }
 
-        if (mFloorIcons.isEmpty()) {
-            for (int i = 0; i < mNumberFloors; i++) {
-                mFloorIcons.add(BitmapDescriptorFactory
-                        .defaultMarker(MapUtils.createFloorColor(i)));
-            }
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     public void placeMarkerLocationOnCurrentRegion(Coordinates coordinates) {
@@ -408,8 +410,13 @@ public class BeaconMapsActivity extends FragmentActivity
     public void onStop() {
         super.onStop();
         mEstimoteBeaconManager.stopEstimoteBeaconManager();
-        clearMap();
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        clearMap();
+        setMyLocationEnabled(false);
     }
 
 
@@ -440,6 +447,8 @@ public class BeaconMapsActivity extends FragmentActivity
         mMap.setOnIndoorStateChangeListener(this);
         mMap.setOnMapClickListener(this);
 
+        drawOverlays();
+
         mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
             @Override
             public void onCameraIdle() {
@@ -458,6 +467,7 @@ public class BeaconMapsActivity extends FragmentActivity
         mapUiSettings.setMapToolbarEnabled(false);
 
         attemptEnableMyLocation();
+
         // Connect to the Firebase database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -503,41 +513,17 @@ public class BeaconMapsActivity extends FragmentActivity
                     }
                     markerList.add(m);
                     mMarkers.put(model.id, model);
-                }
 
-                if (mFloor > INVALID_FLOOR) {
-                    setFloorElementsVisible(mFloor, true);
-                }
+                    if (mFloor > INVALID_FLOOR) {
+                        setFloorElementsVisible(mFloor, true);
+                    }
 
-                onFocusHighlightedRoom();
+                    onFocusHighlightedRoom();
 
-                if (mHighlightedRoomName == null) {
-                    mFloorAllButton.callOnClick();
-                }
+                    if (mHighlightedRoomName == null) {
+                        mFloorAllButton.callOnClick();
+                    }
 
-                LatLngBounds osloSpektrumLatLngBounds = new LatLngBounds(
-                        new LatLng(59.91245775721807, 10.753627974205074),       // South west corner
-                        new LatLng(59.91353895983281, 10.755966466270479));      // North east corner
-
-                GroundOverlayOptions osloSpektrumLevel0 = new GroundOverlayOptions()
-                        .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level0))
-                        .positionFromBounds(osloSpektrumLatLngBounds);
-
-                GroundOverlayOptions osloSpektrumLevel1 = new GroundOverlayOptions()
-                        .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level1))
-                        .positionFromBounds(osloSpektrumLatLngBounds);
-
-                GroundOverlayOptions osloSpektrumLevel2 = new GroundOverlayOptions()
-                        .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level2))
-                        .positionFromBounds(osloSpektrumLatLngBounds);
-
-                mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel0));
-                mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel1));
-                mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel2));
-
-                mGroundOverlays.get(0).setVisible(true);
-                for (int i = 1; i < mGroundOverlays.size(); i++) {
-                    mGroundOverlays.get(i).setVisible(false);
                 }
 
                 enableMapElements();
@@ -573,6 +559,37 @@ public class BeaconMapsActivity extends FragmentActivity
         });
 
         setupMap(true);
+    }
+
+    private void drawOverlays() {
+        if(mGroundOverlays.isEmpty()) {
+
+            LatLngBounds osloSpektrumLatLngBounds = new LatLngBounds(
+                    new LatLng(59.91245775721807, 10.753627974205074),       // South west corner
+                    new LatLng(59.91353895983281, 10.755966466270479));      // North east corner
+
+            GroundOverlayOptions osloSpektrumLevel0 = new GroundOverlayOptions()
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level0))
+                    .positionFromBounds(osloSpektrumLatLngBounds);
+
+            GroundOverlayOptions osloSpektrumLevel1 = new GroundOverlayOptions()
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level1))
+                    .positionFromBounds(osloSpektrumLatLngBounds);
+
+            GroundOverlayOptions osloSpektrumLevel2 = new GroundOverlayOptions()
+                    .image(BitmapDescriptorFactory.fromResource(R.drawable.oslospektrum_level2))
+                    .positionFromBounds(osloSpektrumLatLngBounds);
+
+
+            mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel0));
+            mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel1));
+            mGroundOverlays.add(mMap.addGroundOverlay(osloSpektrumLevel2));
+
+            mGroundOverlays.get(0).setVisible(true);
+            for (int i = 1; i < mGroundOverlays.size(); i++) {
+                mGroundOverlays.get(i).setVisible(false);
+            }
+        }
     }
 
     public ArrayList<MarkerEntry> storeAndLoadMarkerEntrys(ArrayList<JzBeaconRegion> beaconRegions) {

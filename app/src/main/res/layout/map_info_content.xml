@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_gravity="bottom"
+    android:gravity="bottom"
     tools:showIn="@layout/map_info_inline">
 
     <LinearLayout
@@ -11,8 +13,8 @@
         android:layout_height="wrap_content"
         android:minHeight="?actionBarSize"
         android:gravity="start|center_vertical"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/map_info_icon"
@@ -30,7 +32,6 @@
             android:gravity="center_vertical"
             android:paddingBottom="@dimen/spacing_normal"
             android:paddingTop="@dimen/spacing_normal"
-            tools:text="@string/placeholder_map_title"
             style="@style/MapRoomTitle" />
 
     </LinearLayout>
@@ -43,17 +44,6 @@
         android:layout_marginStart="@dimen/keyline_2"
         android:paddingBottom="@dimen/spacing_normal"
         android:visibility="gone"
-        tools:text="@string/placeholder_map_subtitle"
-        tools:visibility="visible"
         style="@style/Body1Text" />
-
-    <ListView
-        android:id="@+id/map_info_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/divider"
-        android:dividerHeight="@dimen/divider_height"
-        tools:listitem="@layout/map_item_session"
-        android:visibility="gone"/>
 
 </LinearLayout>

@@ -33,8 +33,6 @@ public abstract class MapInfoFragment extends Fragment {
     protected TextView mSubtitle;
     protected ImageView mIcon;
 
-    protected ListView mList;
-
     protected Callback mCallback = sDummyCallback;
 
     private static Callback sDummyCallback = new Callback() {
@@ -74,7 +72,6 @@ public abstract class MapInfoFragment extends Fragment {
         mSubtitle = (TextView) root.findViewById(R.id.map_info_subtitle);
         mIcon = (ImageView) root.findViewById(R.id.map_info_icon);
         mIcon.setColorFilter(getResources().getColor(R.color.my_schedule_icon_default));
-        mList = (ListView) root.findViewById(R.id.map_info_list);
         return root;
     }
 
@@ -121,25 +118,20 @@ public abstract class MapInfoFragment extends Fragment {
         final String subtitle = "";
 
         setHeader(MapUtils.getRoomIcon(roomType), title, subtitle);
-        mList.setVisibility(View.GONE);
-
         onRoomSubtitleLoaded(title, roomType, subtitle);
     }
 
     protected void onSessionsLoaded(String roomTitle, int roomType, Cursor cursor) {
         setHeader(MapUtils.getRoomIcon(roomType), roomTitle, null);
-        mList.setVisibility(View.VISIBLE);
     }
 
     protected void onSessionLoadingFailed(String roomTitle, int roomType) {
         setHeader(MapUtils.getRoomIcon(roomType), roomTitle, null);
-        mList.setVisibility(View.GONE);
     }
 
     public void showOsloSpektrum() {
         setHeader(MapUtils.getRoomIcon(MarkerModel.TYPE_OSLOSPEKTRUM), R.string.map_oslospektrum,
                 R.string.map_spektrum_address);
-        mList.setVisibility(View.GONE);
     }
 
     protected void setHeader(int icon, int title, int subTitle) {
@@ -154,7 +146,6 @@ public abstract class MapInfoFragment extends Fragment {
 
         if (subTitle != 0) {
             mSubtitle.setText(subTitle);
-            mSubtitle.setVisibility(View.VISIBLE);
         } else {
             mSubtitle.setVisibility(View.GONE);
         }
@@ -173,7 +164,6 @@ public abstract class MapInfoFragment extends Fragment {
 
         if (subTitle != null && !subTitle.isEmpty()) {
             mSubtitle.setText(subTitle);
-            mSubtitle.setVisibility(View.VISIBLE);
         } else {
             mSubtitle.setVisibility(View.GONE);
         }
@@ -181,7 +171,6 @@ public abstract class MapInfoFragment extends Fragment {
 
     public void showTitleOnly(int roomType, String title) {
         setHeader(MapUtils.getRoomIcon(roomType), title, null);
-        mList.setVisibility(View.GONE);
     }
 
     public abstract void hide();

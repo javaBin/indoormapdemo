@@ -90,7 +90,6 @@ public class SlideableInfoFragment extends MapInfoFragment {
         // Update the title and hide the list if displayed.
         // We don't want to uneccessarily resize the panel.
         mTitle.setText(roomTitle);
-        mList.setVisibility(mList.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.GONE);
 
     }
 
@@ -167,17 +166,12 @@ public class SlideableInfoFragment extends MapInfoFragment {
 
         @Override
         public void onPanelCollapsed(View view) {
-            mList.setScrollContainer(false);
-            mList.setEnabled(false);
-            mList.setSelection(0);
             mPanelContent.setClickable(false);
 
         }
 
         @Override
         public void onPanelExpanded(View view) {
-            mList.setScrollContainer(true);
-            mList.setEnabled(true);
             mPanelContent.setClickable(true);
         }
 

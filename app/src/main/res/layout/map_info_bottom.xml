@@ -17,13 +17,14 @@
     <View
         android:id="@+id/map_bottomsheet_dummycontent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:clickable="false"
         android:focusableInTouchMode="false"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:foregroundGravity="bottom"
         android:id="@+id/map_bottomsheet_slideable">
 
         <include layout="@layout/map_info_content"/>
